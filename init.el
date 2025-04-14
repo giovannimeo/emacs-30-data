@@ -11,6 +11,7 @@
 
 (message "List of packages to install")
 ;;Seems useless(straight-use-package 'use-package)
+(straight-use-package 'combobulate)
 (message "Treesitter settings")
 (setq treesit-language-source-alist
       '((bash "https://github.com/tree-sitter/tree-sitter-bash")
