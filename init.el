@@ -180,7 +180,8 @@ BEG and END (region to sort)."
                     ("C-c g r" . git-grep-repo)))
 
 ;; Define sensible settings
-(setq-default indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil) ;; Use only spaces
+(menu-bar-mode -1) ;; Disable menu bar
 
 (message "Customizations for user")
 (message "End of Emacs 30 init.el")
