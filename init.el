@@ -58,12 +58,6 @@
 (elpy-enable)
 (add-hook 'python-mode-hook 'elpy-mode)
 
-;; Do automatic cleanup of whitespaces
-(require 'whitespace-cleanup-mode)
-(add-hook 'python-mode-hook 'whitespace-cleanup-mode)
-(add-hook 'yaml-mode-hook 'whitespace-cleanup-mode)
-(add-hook 'c++-mode-hook 'whitespace-cleanup-mode)
-
 ;; Custom ELISP
 ;; MAKE SURE A SCRIPT IS SET TO BE EXECUTABLE
 ;; From Emacswiki
