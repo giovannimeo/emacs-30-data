@@ -14,6 +14,7 @@
 (straight-use-package 'solarized-emacs)
 (straight-use-package 'git-grep)
 (straight-use-package 'elpy)
+(straight-use-package 'magit)
 (load-theme 'solarized-dark t)
 (message "Treesitter settings")
 (setq treesit-language-source-alist
