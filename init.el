@@ -3,37 +3,38 @@
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name
-	"straight/repos/straight.el/bootstrap.el"
-	(or (bound-and-true-p straight-base-dir)
-	    user-emacs-directory)))
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
       (bootstrap-version 7))
   (load bootstrap-file nil 'nomessage))
 
-(message "List of packages to install")
+(message "Start to initialize packages")
 (straight-use-package 'use-package)
 (straight-use-package 'solarized-emacs)
 (straight-use-package 'git-grep)
+(straight-use-package 'elpy)
 (load-theme 'solarized-dark t)
 (message "Treesitter settings")
 (setq treesit-language-source-alist
       '((bash "https://github.com/tree-sitter/tree-sitter-bash")
-	(cmake "https://github.com/uyha/tree-sitter-cmake")
-	(css "https://github.com/tree-sitter/tree-sitter-css")
-	(c "https://github.com/tree-sitter/tree-sitter-c")
-	(cpp "https://github.com/tree-sitter/tree-sitter-cpp")
-	(java "https://github.com/tree-sitter/tree-sitter-java")
-	(elisp "https://github.com/Wilfred/tree-sitter-elisp")
-	(go "https://github.com/tree-sitter/tree-sitter-go")
-	(html "https://github.com/tree-sitter/tree-sitter-html")
-	(javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
-	(json "https://github.com/tree-sitter/tree-sitter-json")
-	(make "https://github.com/alemuller/tree-sitter-make")
-	(markdown "https://github.com/ikatyang/tree-sitter-markdown")
-	(python "https://github.com/tree-sitter/tree-sitter-python")
-	(toml "https://github.com/tree-sitter/tree-sitter-toml")
-	(tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
-	(typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
-	(yaml "https://github.com/ikatyang/tree-sitter-yaml")))
+        (cmake "https://github.com/uyha/tree-sitter-cmake")
+        (css "https://github.com/tree-sitter/tree-sitter-css")
+        (c "https://github.com/tree-sitter/tree-sitter-c")
+        (cpp "https://github.com/tree-sitter/tree-sitter-cpp")
+        (java "https://github.com/tree-sitter/tree-sitter-java")
+        (elisp "https://github.com/Wilfred/tree-sitter-elisp")
+        (go "https://github.com/tree-sitter/tree-sitter-go")
+        (html "https://github.com/tree-sitter/tree-sitter-html")
+        (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
+        (json "https://github.com/tree-sitter/tree-sitter-json")
+        (make "https://github.com/alemuller/tree-sitter-make")
+        (markdown "https://github.com/ikatyang/tree-sitter-markdown")
+        (python "https://github.com/tree-sitter/tree-sitter-python")
+        (toml "https://github.com/tree-sitter/tree-sitter-toml")
+        (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
+        (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
+        (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
 
 (defun rebuildTreeSitter()
   "Rebuild all the tree-sitters mapping based on the treesit-language-source-alist"
@@ -53,22 +54,32 @@
    (java-mode . java-ts-mode)
    (python-mode . python-ts-mode)))
 
+;;Enable ELPY
+(elpy-enable)
+(add-hook 'python-mode-hook 'elpy-mode)
+
+;; Do automatic cleanup of whitespaces
+(require 'whitespace-cleanup-mode)
+(add-hook 'python-mode-hook 'whitespace-cleanup-mode)
+(add-hook 'yaml-mode-hook 'whitespace-cleanup-mode)
+(add-hook 'c++-mode-hook 'whitespace-cleanup-mode)
+
 ;; Custom ELISP
 ;; MAKE SURE A SCRIPT IS SET TO BE EXECUTABLE
 ;; From Emacswiki
 ;; http://www.emacswiki.org/cgi-bin/emacs/MakingScriptsExecutableOnSave
 (add-hook 'after-save-hook
-	  #'(lambda ()
-	      (and (save-excursion
-		     (save-restriction
-		       (widen)
-		       (goto-char (point-min))
-		       (save-match-data
-			 (looking-at "^#!"))))
-		   (not (file-executable-p buffer-file-name))
-		   (shell-command (concat "chmod u+x " buffer-file-name))
-		   (message
-		    (concat "Saved as script: " buffer-file-name)))))
+          #'(lambda ()
+              (and (save-excursion
+                     (save-restriction
+                       (widen)
+                       (goto-char (point-min))
+                       (save-match-data
+                         (looking-at "^#!"))))
+                   (not (file-executable-p buffer-file-name))
+                   (shell-command (concat "chmod u+x " buffer-file-name))
+                   (message
+                    (concat "Saved as script: " buffer-file-name)))))
 
 ;; Toggle truncation and navigation keys
 (defun truncate_and_navigate ()
@@ -88,14 +99,14 @@ BEG and END (region to sort)."
       (narrow-to-region beg end)
       (goto-char (point-min))
       (while (not (eobp))
-	(kill-line 1)
-	(yank)
-	(let ((next-line (point)))
-	  (while
-	      (re-search-forward
-	       (format "^%s" (regexp-quote (car kill-ring))) nil t)
-	    (replace-match "" nil nil))
-	  (goto-char next-line))))))
+        (kill-line 1)
+        (yank)
+        (let ((next-line (point)))
+          (while
+              (re-search-forward
+               (format "^%s" (regexp-quote (car kill-ring))) nil t)
+            (replace-match "" nil nil))
+          (goto-char next-line))))))
 
 ;;Increment all the numbers in a line!
 (defun another-line (num-lines)
@@ -105,15 +116,15 @@ BEG and END (region to sort)."
     (interactive "p")
     (if (not num-lines) (setq num-lines 0) (setq num-lines (1- num-lines)))
     (let* ((col (current-column))
-	   (bol (save-excursion (forward-line (- num-lines)) (beginning-of-line) (point)))
-	   (eol (progn (end-of-line) (point)))
-	   (line (buffer-substring bol eol)))
+           (bol (save-excursion (forward-line (- num-lines)) (beginning-of-line) (point)))
+           (eol (progn (end-of-line) (point)))
+           (line (buffer-substring bol eol)))
       (goto-char bol)
       (while (re-search-forward "<[0-9]+>" eol 1)
-	(let ((num (string-to-int (buffer-substring
-				    (+ 1 (match-beginning 0)) (- (match-end 0) 1)))))
-	  (replace-match (concat "<" (int-to-string (1+ num)) ">" )))
-	(setq eol (save-excursion (goto-char eol) (end-of-line) (point))))
+        (let ((num (string-to-int (buffer-substring
+                                    (+ 1 (match-beginning 0)) (- (match-end 0) 1)))))
+          (replace-match (concat "<" (int-to-string (1+ num)) ">" )))
+        (setq eol (save-excursion (goto-char eol) (end-of-line) (point))))
       (goto-char bol)
       ;; Remove from the original line the tags "<" ">" so we can
       ;; reuse this multiple time
@@ -142,8 +153,8 @@ BEG and END (region to sort)."
   "Add paths to all open files to kill ring"
   (interactive)
   (kill-new (mapconcat 'identity
-		       (delq nil (mapcar 'buffer-file-name (buffer-list)))
-		       "\n")))
+                       (delq nil (mapcar 'buffer-file-name (buffer-list)))
+                       "\n")))
 
 (defun dobuild (target)
   "Perform dobuild in Emacs itself"
@@ -169,9 +180,12 @@ BEG and END (region to sort)."
 
 ;; git grep interface
 (use-package git-grep
-	     :commands (git-grep git-grep-repo)
-	     :bind (("C-c g g" . git-grep)
-		    ("C-c g r" . git-grep-repo)))
+             :commands (git-grep git-grep-repo)
+             :bind (("C-c g g" . git-grep)
+                    ("C-c g r" . git-grep-repo)))
+
+;; Define sensible settings
+(setq-default indent-tabs-mode nil)
 
 (message "Customizations for user")
 (message "End of Emacs 30 init.el")
