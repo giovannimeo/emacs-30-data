@@ -182,6 +182,7 @@ BEG and END (region to sort)."
 ;; Define sensible settings
 (setq-default indent-tabs-mode nil) ;; Use only spaces
 (menu-bar-mode -1) ;; Disable menu bar
+(column-number-mode t) ;; Show columns
 
 (message "Customizations for user")
 (message "End of Emacs 30 init.el")
