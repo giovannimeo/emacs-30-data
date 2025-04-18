@@ -2,4 +2,5 @@ auto-save-list/**
 eln-cache/**
 straight/**
 tree-sitter/**
+transient/**
 *~
