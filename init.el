@@ -11,11 +11,10 @@
 
 (message "Start to initialize packages")
 (straight-use-package 'use-package)
-(straight-use-package 'solarized-emacs)
 (straight-use-package 'git-grep)
 (straight-use-package 'elpy)
 (straight-use-package 'magit)
-(load-theme 'solarized-dark t)
+(straight-use-package 'dark-krystal-theme)
 (message "Treesitter settings")
 (setq treesit-language-source-alist
       '((bash "https://github.com/tree-sitter/tree-sitter-bash")
@@ -58,6 +57,7 @@
 ;;Enable ELPY
 (elpy-enable)
 (add-hook 'python-mode-hook 'elpy-mode)
+(add-hook 'python-ts-mode-hook 'elpy-mode)
 
 ;; Custom ELISP
 ;; MAKE SURE A SCRIPT IS SET TO BE EXECUTABLE
@@ -183,6 +183,7 @@ BEG and END (region to sort)."
 (setq-default indent-tabs-mode nil) ;; Use only spaces
 (menu-bar-mode -1) ;; Disable menu bar
 (column-number-mode t) ;; Show columns
+(load-theme 'dark-krystal t) ;; Load the tem
 
 (message "Customizations for user")
 (message "End of Emacs 30 init.el")
