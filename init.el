@@ -56,6 +56,9 @@
 
 ;;Enable ELPY
 (elpy-enable)
+(setq elpy-modules
+      '(elpy-module-company elpy-module-eldoc elpy-module-flymake elpy-module-pyvenv elpy-module-highlight-indentation elpy-module-django elpy-module-sane-defaults))
+(setq elpy-rpc-virtualenv-path 'current)
 (add-hook 'python-mode-hook 'elpy-mode)
 (add-hook 'python-ts-mode-hook 'elpy-mode)
 
