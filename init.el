@@ -47,6 +47,8 @@
  '((yaml-mode . yaml-ts-mode)
    (bash-mode . bash-ts-mode)
    (c-mode . c-ts-mode)
+   (c++-mode . c++-ts-mode)
+   (c-or-c++-mode . c-or-c++-ts-mode)
    (js2-mode . js-ts-mode)
    (typescript-mode . typescript-ts-mode)
    (json-mode . json-ts-mode)
@@ -187,6 +189,9 @@ BEG and END (region to sort)."
 (menu-bar-mode -1) ;; Disable menu bar
 (column-number-mode t) ;; Show columns
 (load-theme 'dark-krystal t) ;; Load the tem
+;; Set 4 spaces for indentation mode for C/C++ modes
+(setq c-ts-mode-indent-offset 4)
+(c-ts-mode-set-global-style 'gnu)
 
 (message "Customizations for user")
 (message "End of Emacs 30 init.el")
