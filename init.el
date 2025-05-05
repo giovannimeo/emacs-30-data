@@ -189,9 +189,9 @@ BEG and END (region to sort)."
 (menu-bar-mode -1) ;; Disable menu bar
 (column-number-mode t) ;; Show columns
 (load-theme 'dark-krystal t) ;; Load the tem
-;; Set 4 spaces for indentation mode for C/C++ modes
+;; Set 4 spaces for indentation mode for C/C++ modes and use the GNU base style
 (setq c-ts-mode-indent-offset 4)
-(c-ts-mode-set-global-style 'gnu)
+(setq c-ts-mode-indent-style 'gnu)
 
 (message "Customizations for user")
 (message "End of Emacs 30 init.el")
