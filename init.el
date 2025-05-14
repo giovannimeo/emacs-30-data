@@ -191,7 +191,7 @@ BEG and END (region to sort)."
 (load-theme 'dark-krystal t) ;; Load the tem
 ;; Set 4 spaces for indentation mode for C/C++ modes and use the GNU base style
 (setq c-ts-mode-indent-offset 4)
-(setq c-ts-mode-indent-style 'gnu)
+(setq c-ts-mode-indent-style 'bsd)
 
 (message "Customizations for user")
 (message "End of Emacs 30 init.el")
