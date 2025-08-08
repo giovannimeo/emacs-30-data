@@ -15,6 +15,7 @@
 (straight-use-package 'elpy)
 (straight-use-package 'magit)
 (straight-use-package 'dark-krystal-theme)
+(straight-use-package 'markdown-mode)
 (message "Treesitter settings")
 (setq treesit-language-source-alist
       '((bash "https://github.com/tree-sitter/tree-sitter-bash")
@@ -54,6 +55,7 @@
    (json-mode . json-ts-mode)
    (css-mode . css-ts-mode)
    (java-mode . java-ts-mode)
+   (markdown-mode . markdown-ts-mode)
    (python-mode . python-ts-mode)))
 
 ;;Enable ELPY
@@ -205,3 +207,4 @@ BEG and END (region to sort)."
 
 (message "Customizations for user")
 (message "End of Emacs 30 init.el")
+(put 'narrow-to-region 'disabled nil)
