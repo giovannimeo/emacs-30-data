@@ -16,6 +16,7 @@
 (straight-use-package 'magit)
 (straight-use-package 'dark-krystal-theme)
 (straight-use-package 'markdown-mode)
+(straight-use-package 'rust-mode)
 (message "Treesitter settings")
 (setq treesit-language-source-alist
       '((bash "https://github.com/tree-sitter/tree-sitter-bash")
@@ -32,6 +33,7 @@
         (make "https://github.com/alemuller/tree-sitter-make")
         (markdown "https://github.com/ikatyang/tree-sitter-markdown")
         (python "https://github.com/tree-sitter/tree-sitter-python")
+        (rust "https://github.com/tree-sitter/tree-sitter-rust")
         (toml "https://github.com/tree-sitter/tree-sitter-toml")
         (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
         (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
@@ -55,6 +57,7 @@
    (json-mode . json-ts-mode)
    (css-mode . css-ts-mode)
    (java-mode . java-ts-mode)
+   (rust-mode . rust-ts-mode)
    (markdown-mode . markdown-ts-mode)
    (python-mode . python-ts-mode)))
 
