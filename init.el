@@ -17,6 +17,8 @@
 (straight-use-package 'dark-krystal-theme)
 (straight-use-package 'markdown-mode)
 (straight-use-package 'rust-mode)
+(straight-use-package
+ '(combobulate :type git :host github :repo "giovannimeo/combobulate"))
 (message "Treesitter settings")
 (setq treesit-language-source-alist
       '((bash "https://github.com/tree-sitter/tree-sitter-bash")
