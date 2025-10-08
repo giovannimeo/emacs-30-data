@@ -180,6 +180,8 @@ BEG and END (region to sort)."
 (global-set-key [end] 'end-of-line)
 (global-set-key [home] 'beginning-of-line)
 (global-set-key [f9] 'truncate_and_navigate)
+(global-set-key "\M-," 'beginning-of-buffer)
+(global-set-key "\M-." 'end-of-buffer)
 ;; Bind with F3 the find-file-at-point command
 (global-set-key [f3] 'find-file-at-point)
 ;; Define a shortcut for revert-buffer
