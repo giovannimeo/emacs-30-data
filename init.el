@@ -64,8 +64,10 @@
    (css-mode . css-ts-mode)
    (java-mode . java-ts-mode)
    (rust-mode . rust-ts-mode)
-   (markdown-mode . markdown-ts-mode)
    (python-mode . python-ts-mode)))
+
+;; Open Markdown files with markdown-mode.
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;;Enable ELPY
 (elpy-enable)
