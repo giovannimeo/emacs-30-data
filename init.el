@@ -17,9 +17,13 @@
 (straight-use-package 'dark-krystal-theme)
 (straight-use-package 'markdown-mode)
 (straight-use-package 'rust-mode)
+(straight-use-package 'vterm)
 (straight-use-package
  '(combobulate :type git :host github :repo "giovannimeo/combobulate"))
+(straight-use-package
+ '(codex-cli :type git :host github :repo "emacsmirror/codex-cli"))
 (message "Treesitter settings")
+(setq codex-cli-terminal-backend 'vterm)
 (setq treesit-language-source-alist
       '((bash "https://github.com/tree-sitter/tree-sitter-bash")
         (cmake "https://github.com/uyha/tree-sitter-cmake")
